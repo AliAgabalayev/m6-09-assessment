@@ -24,6 +24,11 @@ def cmd_predict():
     )
 
     OUTPUT_CSV.parent.mkdir(parents=True, exist_ok=True)
+    try:
+        import subprocess
+        subprocess.run(["chmod", "777", str(OUTPUT_CSV.parent)], capture_output=True)
+    except Exception:
+        pass
 
     with OUTPUT_CSV.open("w", newline="") as f:
         writer = csv.writer(f)

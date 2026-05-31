@@ -15,12 +15,20 @@ docker pull aliagabalayev/cat-detector:final
 # Student info
 docker run --rm aliagabalayev/cat-detector:final info
 
-# Predict (Linux/SELinux: add :z to volume flags)
+# Predict
 docker run --rm \
   -v /absolute/path/to/images:/data/input:ro \
   -v /absolute/path/to/results:/data/output \
   aliagabalayev/cat-detector:final predict
 ```
+
+> **Linux / SELinux (Fedora, RHEL):** append `:z` to volume flags if permission errors occur:
+> ```bash
+> docker run --rm \
+>   -v /path/to/images:/data/input:ro,z \
+>   -v /path/to/results:/data/output:z \
+>   aliagabalayev/cat-detector:final predict
+> ```
 
 Output: `/data/output/predictions.csv` — `image_path,xmin,ymin,xmax,ymax,confidence,class`
 
