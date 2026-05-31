@@ -3,34 +3,27 @@
 ## Image for leaderboard
 
 ```bash
-docker pull aliagabalayev/cat-detector:final
+docker pull aliagabalayev/agabalazade-ali-cat-detector:submission
 ```
 
-**Image:** `aliagabalayev/cat-detector:final`  
+**Image:** `aliagabalayev/agabalazade-ali-cat-detector:submission`  
 **Student:** Ali Agabalazade
 
 ## Run
 
 ```bash
-# Student info
-docker run --rm aliagabalayev/cat-detector:final info
-
-# Predict
 docker run --rm \
-  -v /absolute/path/to/images:/data/input:ro \
-  -v /absolute/path/to/results:/data/output \
-  aliagabalayev/cat-detector:final predict
+  -v /path/to/images:/data/input:ro \
+  -v /path/to/results:/data/output \
+  aliagabalayev/agabalazade-ali-cat-detector:submission \
+  --input /data/input \
+  --output /data/output/predictions.json \
+  --threshold 0.25
 ```
 
-> **Linux / SELinux (Fedora, RHEL):** append `:z` to volume flags if permission errors occur:
-> ```bash
-> docker run --rm \
->   -v /path/to/images:/data/input:ro,z \
->   -v /path/to/results:/data/output:z \
->   aliagabalayev/cat-detector:final predict
-> ```
+> **Linux / SELinux (Fedora, RHEL):** append `:z` to volume flags if permission errors occur.
 
-Output: `/data/output/predictions.csv` — `image_path,xmin,ymin,xmax,ymax,confidence,class`
+Output: `/data/output/predictions.json` — JSON with `model`, `threshold`, `predictions[]`
 
 ## Model Results
 
