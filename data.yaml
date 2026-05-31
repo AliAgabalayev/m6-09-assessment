@@ -1,0 +1,7 @@
+path: /home/aliagabalayev/Desktop/Workspace/IronHack/Labs/M6/m6-04-assessment/data
+train: DATA_CLEAN/train.txt
+val:   DATA_CLEAN/val.txt
+test:  DATA_CLEAN/test.txt
+nc: 1
+names:
+  0: cat
